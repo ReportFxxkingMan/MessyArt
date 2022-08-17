@@ -1,0 +1,2 @@
+class GoogleCredentialException(Exception):
+    pass
