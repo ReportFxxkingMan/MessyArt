@@ -1,7 +1,0 @@
-time,id,product,num,price,pay
-2022/08/15 20:13,1,iced americano,3,3500,card
-2022/08/15 20:13,1,choco brezel,1,4000,card
-2022/08/15 21:10,2,iced americano,2,3500,cash
-2022/08/15 21:10,2,iced latte,2,3800,cash
-2022/08/15 21:10,2,latte,1,3800,cash
-2022/08/15 21:10,2,pepperoni brezel,1,4000,cash
