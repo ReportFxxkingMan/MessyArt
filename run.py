@@ -1,4 +1,3 @@
-#%%
 import pandas as pd
 from data.column_name import COL_DICT
 from module.database.google_sheet import connect_google_sheet
