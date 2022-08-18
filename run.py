@@ -25,5 +25,3 @@ if __name__ == "__main__":
 
     sheet = connect_google_sheet()
     check_sheet(sheet, SPREADSHEET_ID, RANGE)
-
-# %%
