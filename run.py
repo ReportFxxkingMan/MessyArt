@@ -17,7 +17,6 @@ def check_sheet(sheet, SPREADSHEET_ID, RANGE):
         print(row)
 
 
-#%%
 if __name__ == "__main__":
     df = pd.read_table("data/mock_data.tsv", sep="\s{2,}", engine="python")
     df = df.rename(columns=COL_DICT)
