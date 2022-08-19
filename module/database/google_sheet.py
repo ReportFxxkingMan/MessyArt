@@ -1,25 +1,30 @@
 import os
 import logging
+import googleapiclient
 from dotenv import load_dotenv
-import gspread
-from oauth2client.service_account import ServiceAccountCredentials
+from googleapiclient.discovery import build
+from google.oauth2.credentials import Credentials
 from module.common.exceptions import GoogleCredentialException
 
+def connect_google_sheet() -> googleapiclient.discovery.Resource:
+    """
+    connect and authorize google api sheet
 
-def connect_google_sheets():
+    Returns:
+        googleapiclient.discovery.Resource: connected spreadsheet api
+    """
+    
     try:
         load_dotenv()
     except GoogleCredentialException as e:
         logging.error(e)
 
-    scope = [
-        "https://spreadsheets.google.com/feeds",
-        "https://www.googleapis.com/auth/drive",
-    ]
+    SCOPES = ['https://www.googleapis.com/auth/spreadsheets']
 
-    credential = ServiceAccountCredentials.from_json_keyfile_name(
-        os.environ["GOOGLE_APPLICATION_CREDENTIALS"], scope
-    )
-    gc = gspread.authorize(credential)
+    creds = Credentials.from_authorized_user_file(
+        os.environ["GOOGLE_APPLICATION_CREDENTIALS"], SCOPES)
 
-    return gc
+    service = build('sheets', 'v4', credentials=creds)
+    sheet = service.spreadsheets()
+    
+    return sheet
