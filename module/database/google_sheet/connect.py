@@ -24,13 +24,13 @@ def connect_google_sheet() -> googleapiclient.discovery.Resource:
         logging.error(e)
 
     creds = Credentials.from_authorized_user_file(
-        filename=os.environ["GOOGLE_APPLICATION_CREDENTIALS"], 
+        filename=os.environ["GOOGLE_APPLICATION_CREDENTIALS"],
         scopes=SPREADSHEET_SCOPES,
     )
 
     service = build(
-        serviceName="sheets", 
-        version="v4", 
+        serviceName="sheets",
+        version="v4",
         credentials=creds,
     )
     sheet = service.spreadsheets()
