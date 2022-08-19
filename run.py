@@ -6,7 +6,21 @@ from module.database.variable import (
     SPREADSHEET_RANGE,
     )
 
-def check_sheet(sheet, SPREADSHEET_ID, SPREADSHEET_RANGE):
+
+def check_sheet(
+    sheet: googleapiclient.discovery.Resource,
+    SPREADSHEET_ID: str,
+    SPREADSHEET_RANGE: str
+    ) -> None:
+    """
+    check sheet's value from google spreadsheet api
+
+    Args:
+        sheet (googleapiclient.discovery.Resource): connected google sheet api
+        SPREADSHEET_ID (str): spreadsheet name to look up
+        SPREADSHEET_RANGE (str): spreadsheet range to look up
+    """
+    
     result = sheet.values().get(spreadsheetId=SPREADSHEET_ID,
                                 range=SPREADSHEET_RANGE).execute()
     values = result.get('values', [])
