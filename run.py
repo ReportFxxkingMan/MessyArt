@@ -1,18 +1,18 @@
 import pandas as pd
 import googleapiclient
-from data.column_name import COL_DICT
-from module.database.google_sheet import connect_google_sheet
-from module.database.variable import (
+from module.database.google_sheet.connect import connect_google_sheet
+from module.database.google_sheet.variables import (
     SPREADSHEET_ID,
     SPREADSHEET_RANGE,
-    )
+)
+from data.column_name import COL_DICT
 
 
 def check_sheet(
     sheet: googleapiclient.discovery.Resource,
     SPREADSHEET_ID: str,
-    SPREADSHEET_RANGE: str
-    ) -> None:
+    SPREADSHEET_RANGE: str,
+) -> None:
     """
     check sheet's value from google spreadsheet api
 
@@ -21,12 +21,15 @@ def check_sheet(
         SPREADSHEET_ID (str): spreadsheet name to look up
         SPREADSHEET_RANGE (str): spreadsheet range to look up
     """
-    
-    result = sheet.values().get(spreadsheetId=SPREADSHEET_ID,
-                                range=SPREADSHEET_RANGE).execute()
-    values = result.get('values', [])
+
+    result = (
+        sheet.values()
+        .get(spreadsheetId=SPREADSHEET_ID, range=SPREADSHEET_RANGE)
+        .execute()
+    )
+    values = result.get("values", [])
     if not values:
-        print('No data found.')
+        print("No data found.")
 
     for row in values:
         print(row)
