@@ -5,6 +5,8 @@ from dotenv import load_dotenv
 from googleapiclient.discovery import build
 from google.oauth2.credentials import Credentials
 from module.common.exceptions import GoogleCredentialException
+from module.database.google_sheet.variables import SPREADSHEET_SCOPES
+
 
 def connect_google_sheet() -> googleapiclient.discovery.Resource:
     """
@@ -13,18 +15,22 @@ def connect_google_sheet() -> googleapiclient.discovery.Resource:
     Returns:
         googleapiclient.discovery.Resource: connected spreadsheet api
     """
-    
+
     try:
         load_dotenv()
     except GoogleCredentialException as e:
         logging.error(e)
 
-    SCOPES = ['https://www.googleapis.com/auth/spreadsheets']
-
     creds = Credentials.from_authorized_user_file(
-        os.environ["GOOGLE_APPLICATION_CREDENTIALS"], SCOPES)
+        filename=os.environ["GOOGLE_APPLICATION_CREDENTIALS"], 
+        scopes=SPREADSHEET_SCOPES,
+    )
 
-    service = build('sheets', 'v4', credentials=creds)
+    service = build(
+        serviceName="sheets", 
+        version="v4", 
+        credentials=creds,
+    )
     sheet = service.spreadsheets()
-    
+
     return sheet
