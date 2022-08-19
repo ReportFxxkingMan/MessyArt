@@ -3,12 +3,12 @@ from data.column_name import COL_DICT
 from module.database.google_sheet import connect_google_sheet
 from module.database.variable import (
     SPREADSHEET_ID,
-    RANGE,
+    SPREADSHEET_RANGE,
     )
 
-def check_sheet(sheet, SPREADSHEET_ID, RANGE):
+def check_sheet(sheet, SPREADSHEET_ID, SPREADSHEET_RANGE):
     result = sheet.values().get(spreadsheetId=SPREADSHEET_ID,
-                                range=RANGE).execute()
+                                range=SPREADSHEET_RANGE).execute()
     values = result.get('values', [])
     if not values:
         print('No data found.')
@@ -22,4 +22,4 @@ if __name__ == "__main__":
     df = df.rename(columns=COL_DICT)
 
     sheet = connect_google_sheet()
-    check_sheet(sheet, SPREADSHEET_ID, RANGE)
+    check_sheet(sheet, SPREADSHEET_ID, SPREADSHEET_RANGE)
