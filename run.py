@@ -1,11 +1,11 @@
 import pandas as pd
 from data.column_name import COL_DICT
-from module.database.google_sheet import (
+from module.database.google_sheet.connect import (
     connect_google_sheet,
     check_sheet,
     data_to_sheet,
 )
-from module.database.variable import (
+from module.database.google_sheet.variables import (
     SPREADSHEET_ID,
     SPREADSHEET_RANGE,
 )
