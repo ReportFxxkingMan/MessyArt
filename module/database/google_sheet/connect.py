@@ -50,7 +50,6 @@ def check_sheet(
         sheet (googleapiclient.discovery.Resource): connected google sheet api
         SPREADSHEET_ID (str): spreadsheet name to look up
         SPREADSHEET_RANGE (str): spreadsheet range to look up
-
     Returns:
         pd.DataFrame: dataframe from google sheet
     """
