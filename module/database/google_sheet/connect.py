@@ -45,7 +45,6 @@ def check_sheet(
 ) -> pd.DataFrame:
     """
     check sheet's value from google spreadsheet api
-
     Args:
         sheet (googleapiclient.discovery.Resource): connected google sheet api
         SPREADSHEET_ID (str): spreadsheet name to look up
