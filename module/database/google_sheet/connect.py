@@ -70,7 +70,6 @@ def data_to_sheet(
 ) -> Dict:
     """
     upload data to google spreadsheet
-
     Args:
         sheet (googleapiclient.discovery.Resource): connected google sheet api
         SPREADSHEET_ID (str): spreadsheet name to look up
