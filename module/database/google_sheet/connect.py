@@ -78,7 +78,6 @@ def data_to_sheet(
         SPREADSHEET_ID (str): spreadsheet name to look up
         SPREADSHEET_RANGE (str): spreadsheet range to look up
         df (pd.DataFrame): data to upload
-
     Returns:
         Dict: upload response
     """
