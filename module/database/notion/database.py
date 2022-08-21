@@ -76,6 +76,13 @@ def _get_data_keys(
 
 
 class GetNotionDatabase:
+    """
+    Get notion database
+    Args:
+        client (notion_client.client.Client)
+        database_id (str)
+        key_name (str): notion database title column name
+    """
     def __init__(
         self,
         client: notion_client.client.Client,
@@ -85,7 +92,10 @@ class GetNotionDatabase:
         self.contents = _get_data(client=client, database_id=database_id,)
         self.keys = _get_data_keys(contents=self.contents, key_name=key_name,)
 
-    def __call__(self):
+    def __call__(self) -> Dict[str, Any]:
+        """
+        Returns contents and keys
+        """
         return {
             "contents": self.contents,
             "keys": self.keys,
